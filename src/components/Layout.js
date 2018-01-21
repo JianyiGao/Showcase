@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Add from './Add.js';
-import Layout from './Layout.js';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
-class Create extends Component {
+class Layout extends Component {
   render() {
     return (
       <div>
-        <Layout>
-          <Add />
-        </Layout>
+        <Header />
+          {this.props.children}
+        <Footer />
       </div>
     );
   }
 }
 
-export default Create;
+export default Layout;

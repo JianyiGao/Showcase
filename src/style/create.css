@@ -1,0 +1,29 @@
+.input-group .form-control {
+  font-size: 25px;
+  height: 40px;
+}
+
+.input-group-addon {
+  font-size: 25px;
+  height: 30px;
+  margin-bottom: 1%;
+}
+
+.submit {
+  color: black;
+  font-size: 25px;
+  padding: 1%;
+}
+
+.new {
+  font-size: 40px;
+}
+
+.sub {
+  font-size: 20px;
+  margin-bottom: 5%;
+}
+
+.input-group {
+  margin-bottom: 1%;
+}

@@ -1,0 +1,42 @@
+.app{
+  font-size:80px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 25px;
+  font-weight: normal;
+}
+
+.caption{
+  background: #FFEBEA;
+  margin: 2%;
+}
+
+.thumbnail {
+  background: #FFF7EA;
+  margin: 2%;
+}
+
+.add{
+  font-size: 20px;
+  color: black;
+}
+
+.btn-default {
+  color: #BFB7B0;
+  margin-bottom: 5%;
+}
+
+.glyphicon {
+  font-size: 1.5em;
+  color: black;
+}
+
+.detail {
+  color: black;
+}
+
+.view {
+  flex: 1;
+}

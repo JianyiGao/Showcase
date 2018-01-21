@@ -1,12 +1,20 @@
-# Building CRUD Web Application using MERN Stack
+# Showcase
 
-This source code is part of [Building CRUD Web Application using MERN Stack](https://www.djamware.com/post/59faec0a80aca7739224ee1f/building-crud-web-application-using-mern-stack) tutorial.
+A social media platform for awesome ideas. Here at showcase, we can share the projects that we are proud of, learn about the popular technologies, and find hackers with the same passion with you.
 
-If you think this source code is useful, it will be great if you just give it star or just buy me a cup of cofee [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q5WK24UVWUGBN)
+# Technology
 
-To run this app:
+Developed with MERN stack framework. (MongoDB, Express, React, NodeJS)
 
-* Clone this repo
-* Run `npm install`
-* Run `npm run build`
-* Run `npm start`
+# To start
+npm install
+npm run build
+npm start
+then go to localhost:3000
+
+
+# Preview
+Main page:
+![alt text](Demo/home.png "Main page")
+Add new project:
+![alt text](Demo/add.png "Add new project")

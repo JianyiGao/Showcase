@@ -16,6 +16,11 @@ import {
 
 class Header extends Component {
 
+  logout = () => {
+    localStorage.removeItem('jwtToken');
+    window.location.reload();
+  }
+
   render(){
     return (
       <Navbar collapseOnSelect>
@@ -40,14 +45,18 @@ class Header extends Component {
   				</FormGroup>{' '}
   				<Button type="submit">Submit</Button>
   			</Navbar.Form>
-    			<Nav pullRight>
-    				<NavItem eventKey={1} href="#">
-    					Login
-    				</NavItem>
-    				<NavItem eventKey={2} href="#">
-    					Register
-    				</NavItem>
-    			</Nav>
+            {!localStorage.getItem('jwtToken') &&
+              <Nav pullRight>
+                <NavItem eventKey={1}  href = "/login">Login</NavItem>
+                <NavItem eventKey={2}  href = "/register">Register</NavItem>
+              </Nav>
+            }
+            {localStorage.getItem('jwtToken') &&
+            	<Nav pullRight>
+                <NavItem eventKey={1}>Profile</NavItem>
+                <NavItem eventKey={2}  onClick={this.logout}>Logout</NavItem>
+              </Nav>
+            }
     		</Navbar.Collapse>
     	</Navbar>
     );

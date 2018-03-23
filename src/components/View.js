@@ -32,9 +32,21 @@ class View extends Component {
       <div class="page-header">
           <p class = "app">Showcase <small class = "description">is a social media platform for people with awesome ideas, like you!</small></p>
       </div>
-      <div class = "create col-md-offset-10">
-        <Link to="/create" class = "btn btn-default" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span><span class = "add">Add Your Project</span></Link>
-      </div>
+        {!localStorage.getItem('jwtToken') &&
+          <div class = "create col-md-offset-10">
+            <Link to="/login" class = "btn btn-default" >
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            <span class = "add">Add Your Project</span></Link>
+          </div>
+        }
+        {localStorage.getItem('jwtToken') &&
+          <div class = "create col-md-offset-10">
+            <Link to="/create" class = "btn btn-default" >
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            <span class = "add">Add Your Project</span></Link>
+          </div>
+        }
+
       <SearchInput className="search-input" onChange={this.searchUpdated} />
         {filtered.map(project =>
           <div class="col-sm-6 col-md-4">

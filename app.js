@@ -10,6 +10,7 @@ mongoose.connect('mongodb://JianyiG:awesome5@ds249787.mlab.com:49787/showcase', 
   .catch((err) => console.error(err));
 
 var project = require('./routes/project');
+var auth = require('./routes/auth');
 var app = express();
 
 app.use(logger('dev'));
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api/project', project);
+app.use('/api/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

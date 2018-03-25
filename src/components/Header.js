@@ -13,6 +13,7 @@ import {
   FormControl,
   Button
 } from 'react-bootstrap';
+import decode from 'jwt-decode';
 
 class Header extends Component {
 
@@ -22,6 +23,9 @@ class Header extends Component {
   }
 
   render(){
+    var token = localStorage.getItem('jwtToken');
+    if (token)
+      var decoded_token = decode(token);
     return (
       <Navbar collapseOnSelect>
     		<Navbar.Header>
@@ -53,7 +57,7 @@ class Header extends Component {
             }
             {localStorage.getItem('jwtToken') &&
             	<Nav pullRight>
-                <NavItem eventKey={1}>Profile</NavItem>
+                <NavItem eventKey={1}>{decoded_token.username}</NavItem>
                 <NavItem eventKey={2}  onClick={this.logout}>Logout</NavItem>
               </Nav>
             }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../style/create.css';
+import decode from 'jwt-decode';
 
 class Add extends Component {
   constructor() {
@@ -27,17 +28,19 @@ class Add extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { type, collaborate, name, description, github, link, skills, filelink } = this.state;
+    const {type, collaborate, name, description, github, link, skills, filelink } = this.state;
 
-    axios.post('/api/project', { type, name, collaborate, description, github, link, skills, filelink })
+    axios.post('/api/project',  {type, collaborate, name, description, github, link, skills, filelink })
       .then((result) => {
         this.props.history.push("/")
       });
   }
 
   render() {
-    const { type, collaborate, name, description, github, link, skills, filelink } = this.state;
-
+    const  {type, collaborate, name, description, github, link, skills, filelink } = this.state;
+    // var token = localStorage.getItem('jwtToken');
+    // var decoded_token = decode(token);
+    // this.state.user = decoded_token._id;
     return (
       <div class = "col-md-offset-1 col-md-10">
         <div class = "new">Add a New Project</div>
@@ -50,8 +53,8 @@ class Add extends Component {
             <input type = "text" class = "form-control" name = "name" value = {name} onChange = {this.onChange} placeHolder = "Albert and Alberta's Personal Website" />
           </div>
           <div class = "input-group">
-            <span class ="input-group-addon" id="name">Collborate</span>
-            <input type = "text" class = "form-control" name = "name" value = {collaborate} onChange = {this.onChange} placeHolder = "Gator" />
+            <span class ="input-group-addon" id="collaborate">Collaborate</span>
+            <input type = "text" class = "form-control" name = "collaborate" value = {collaborate} onChange = {this.onChange} placeHolder = "Gator" />
           </div>
           <div class = "input-group">
             <span class ="input-group-addon" id="type">Type</span>

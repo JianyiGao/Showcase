@@ -27,19 +27,20 @@ class View extends Component {
 
   render(){
     const filtered = this.state.projects.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+    var token = localStorage.getItem('jwtToken');
     return (
       <div class = 'view col-md-offset-1 col-md-10'>
       <div class="page-header">
           <p class = "app">Showcase <small class = "description">is a social media platform for people with awesome ideas, like you!</small></p>
       </div>
-        {!localStorage.getItem('jwtToken') &&
+        {!token &&
           <div class = "create col-md-offset-10">
             <Link to="/login" class = "btn btn-default" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             <span class = "add">Add Your Project</span></Link>
           </div>
         }
-        {localStorage.getItem('jwtToken') &&
+        {token &&
           <div class = "create col-md-offset-10">
             <Link to="/create" class = "btn btn-default" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>

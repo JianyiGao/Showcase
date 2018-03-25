@@ -6,6 +6,7 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = require("../models/user");
+var jwtDecode = require('jwt-decode');
 
 router.post('/register', function(req, res) {
   if (!req.body.username || !req.body.password) {
@@ -34,6 +35,7 @@ router.post('/login', function(req, res) {
     if (!user) {
       res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
     } else {
+      // console.log(user);
       // check if password matches
       user.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {

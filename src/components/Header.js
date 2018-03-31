@@ -57,7 +57,7 @@ class Header extends Component {
             }
             {localStorage.getItem('jwtToken') &&
             	<Nav pullRight>
-                <NavItem eventKey={1}>{decoded_token.username}</NavItem>
+                <NavItem eventKey={1} href="/dashboard">{decoded_token.username}</NavItem>
                 <NavItem eventKey={2}  onClick={this.logout}>Logout</NavItem>
               </Nav>
             }

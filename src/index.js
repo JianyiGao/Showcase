@@ -11,6 +11,7 @@ import Create from './components/Create';
 import Show from './components/Show';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Route path='/edit/:id' component={Edit} />
         <Route path='/create' component={Create} />
         <Route path='/show/:id' component={Show} />
+        <Route path='/dashboard' component={Dashboard} />
       </div>
   </Router>,
   document.getElementById('root')

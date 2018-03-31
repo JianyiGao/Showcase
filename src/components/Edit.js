@@ -28,9 +28,9 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { type, name, description, github, link, skills, filelink } = this.state.project;
+    const {user, id, type, collaborate, name, description, github, link, skills, filelink, comment, like } = this.state.project;
 
-    axios.put('/api/project/'+this.props.match.params.id, { type, name, description, github, link, skills, filelink })
+    axios.put('/api/project/'+this.props.match.params.id, {user, id, type, collaborate, name, description, github, link, skills, filelink, comment, like })
       .then((result) => {
         this.props.history.push("/show/"+this.props.match.params.id)
       });

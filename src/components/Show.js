@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Layout from './Layout.js';
+import decode from 'jwt-decode';
 
 class Show extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      project: {}
+      project: {},
+      newComment:{
+        user_id:'',
+        username:'',
+        comment:''
+      }
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +25,36 @@ class Show extends Component {
       .then(res => {
         this.setState({ project: res.data });
         console.log(this.state.project);
+      });
+  }
+
+  onChange = (e) => {
+    const state = this.state.newComment;
+    state[e.target.name] = e.target.value;
+    this.setState({newComment:state});
+    console.log("object: " + this.state.newComment);
+    console.log("comment: " + this.state.newComment.comment);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const {user_id, username, comment} = this.state.newComment;
+    const {user, id, type, collaborate, name, description, github, link, skills, filelink, comments, like } = this.state.project;
+
+    var token = localStorage.getItem('jwtToken');
+    var decoded = decode(token);
+    console.log(this.state.newComment)
+    if (this.state.newComment.comment && token){
+      this.state.newComment.user_id = decoded._id;
+      this.state.newComment.username = decoded.username;
+      this.state.project.comments.push(this.state.newComment);
+    }
+    console.log(this.state.newComment);
+    console.log(this.state.project);
+    axios.put('/api/project/'+this.props.match.params.id, {user, id, type, collaborate, name, description, github, link, skills, filelink, comments, like })
+      .then((result) => {
+        this.props.history.push("/show/"+this.props.match.params.id)
       });
   }
 
@@ -29,6 +67,7 @@ class Show extends Component {
   }
 
   render() {
+    var token = localStorage.getItem('jwtToken');
     return (
       <div class = "show">
         <Layout>
@@ -37,28 +76,35 @@ class Show extends Component {
           </h3>
           <img src = {this.state.project.filelink} alt = "Picture" />
           <Link to = "/" class="btn btn-default">Back</Link>
-
-
-        // <div class="panel panel-default">
-        //   <div class="panel-heading">
-        //     <h3 class="panel-title">Description</h3>
-        //   </div>
-        //   <div class="panel-body">
-        //     {this.state.project.description}
-        //   </div>
-        //   <div class="panel-heading">
-        //     <h3 class="panel-title">Github Link</h3>
-        //   </div>
-        //   <div class="panel-body">
-        //     {this.state.project.link}
-        //   </div>
-        //   <div class="panel-heading">
-        //     <h3 class="panel-title">Skills</h3>
-        //   </div>
-        //   <div class="panel-body">
-        //     {this.state.project.skills}
-        //   </div>
-        // </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Description</h3>
+            </div>
+            <div class="panel-body">
+              {this.state.project.description}
+            </div>
+            <div class="panel-heading">
+              <h3 class="panel-title">Github Link</h3>
+            </div>
+            <div class="panel-body">
+              {this.state.project.link}
+            </div>
+            <div class="panel-heading">
+              <h3 class="panel-title">Skills</h3>
+            </div>
+            <div class="panel-body">
+              {this.state.project.skills}
+            </div>
+            <form onSubmit = {this.onSubmit}>
+              <div class = "input-group">
+                <span class ="input-group-addon" id="comment">Comment</span>
+                <input type = "text" class = "form-control" name = "comment" value = {this.state.newComment.comment} onChange = {this.onChange} placeHolder = "This is a cool project!" />
+              </div>
+              <button type="submit" class="btn btn-default"><span class = "submit">Submit</span></button>
+            </form>
+          </div>
+          <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
+          <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
 
         </Layout>
       </div>

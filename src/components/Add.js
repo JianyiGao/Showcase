@@ -9,6 +9,8 @@ class Add extends Component {
   constructor() {
     super();
     this.state = {
+      user:'',
+      id:'',
       type: '',
       collaborate: '',
       name: '',
@@ -16,7 +18,13 @@ class Add extends Component {
       github: '',
       link: '',
       skills: '',
-      filelink: ''
+      filelink: '',
+      comment:[{
+        user_id: '',
+        user: '',
+        comment: ''
+      }],
+      like: 0
     };
   }
   onChange = (e) => {
@@ -28,19 +36,22 @@ class Add extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const {type, collaborate, name, description, github, link, skills, filelink } = this.state;
+    const {user, id, type, collaborate, name, description, github, link, skills, filelink, comment, like } = this.state;
 
-    axios.post('/api/project',  {type, collaborate, name, description, github, link, skills, filelink })
+    axios.post('/api/project',  {user, id, type, collaborate, name, description, github, link, skills, filelink, comment, like })
       .then((result) => {
         this.props.history.push("/")
       });
   }
 
   render() {
-    const  {type, collaborate, name, description, github, link, skills, filelink } = this.state;
+    var token = localStorage.getItem('jwtToken');
+    var decoded = decode(token);
+    const  {user, id, type, collaborate, name, description, github, link, skills, filelink, like } = this.state;
     // var token = localStorage.getItem('jwtToken');
     // var decoded_token = decode(token);
-    // this.state.user = decoded_token._id;
+    this.state.user = decoded.username;
+    this.state.id = decoded._id;
     return (
       <div class = "col-md-offset-1 col-md-10">
         <div class = "new">Add a New Project</div>

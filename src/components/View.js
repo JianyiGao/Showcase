@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../style/view.css';
-import SearchInput, {createFilter} from 'react-search-input'
+import SearchInput, {createFilter} from 'react-search-input';
 
-const KEYS_TO_FILTERS = ['type', 'name', 'skills'];
+const KEYS_TO_FILTERS = ['type', 'name', 'skills', 'user'];
 
 class View extends Component {
   constructor(props) {

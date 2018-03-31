@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
 var ProjectSchema = new mongoose.Schema({
+  user: String,
+  id: String,
   type: String,
   collaborate: String,
   name: String,
@@ -9,6 +11,12 @@ var ProjectSchema = new mongoose.Schema({
   link: String,
   skills: String,
   filelink: String,
+  comments: [{
+    user_id: String,
+    username: String,
+    comment: String
+  }],
+  like: Number,
   updated_date: { type: Date, default: Date.now },
 });
 

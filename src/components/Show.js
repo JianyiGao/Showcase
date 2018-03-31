@@ -18,6 +18,7 @@ class Show extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +53,7 @@ class Show extends Component {
     }
     console.log(this.state.newComment);
     console.log(this.state.project);
+
     axios.put('/api/project/'+this.props.match.params.id, {user, id, type, collaborate, name, description, github, link, skills, filelink, comments, like })
       .then((result) => {
         this.props.history.push("/show/"+this.props.match.params.id)
@@ -66,8 +68,24 @@ class Show extends Component {
       });
   }
 
+  handleClick = () => {
+   let curProject = Object.assign({}, this.state.project);
+   curProject.like = curProject.like + 1;
+   console.log("newCount: " + curProject.like);
+   this.setState({project:curProject});
+   console.log("New like count: " + this.state.project.like);
+
+   const {user, id, type, collaborate, name, description, github, link, skills, filelink, comments, like } = this.state.project;
+   axios.put('/api/project/'+this.props.match.params.id, {user, id, type, collaborate, name, description, github, link, skills, filelink, comments, like })
+     .then((result) => {
+       this.props.history.push("/show/"+this.props.match.params.id)
+     });
+ }
+
   render() {
     var token = localStorage.getItem('jwtToken');
+    const comments = this.state.project.comments;
+    console.log(comments);
     return (
       <div class = "show">
         <Layout>
@@ -95,14 +113,30 @@ class Show extends Component {
             <div class="panel-body">
               {this.state.project.skills}
             </div>
-            <form onSubmit = {this.onSubmit}>
-              <div class = "input-group">
-                <span class ="input-group-addon" id="comment">Comment</span>
-                <input type = "text" class = "form-control" name = "comment" value = {this.state.newComment.comment} onChange = {this.onChange} placeHolder = "This is a cool project!" />
-              </div>
-              <button type="submit" class="btn btn-default"><span class = "submit">Submit</span></button>
-            </form>
           </div>
+            {token &&
+              <div class="comment_like">
+                <button class="btn btn-default" onClick={this.handleClick}>{this.state.project.like} Likes</button>
+                <form onSubmit = {this.onSubmit}>
+                  <div class = "input-group">
+                    <span class ="input-group-addon" id="comment">Comment</span>
+                    <input type = "text" class = "form-control" name = "comment" value = {this.state.newComment.comment} onChange = {this.onChange} placeHolder = "This is a cool project!" />
+                  </div>
+                  <button type="submit" class="btn btn-default"><span class = "submit">Submit</span></button>
+                </form>
+              </div>
+            }
+            {!token &&
+              <span class = "add">Please <Link to="/login" >login</Link> to comment and like!</span>
+            }
+            {comments &&
+              comments.map(comment =>
+                <div>
+                  <p>{comment.username}</p>
+                  <p>{comment.comment}</p>
+                </div>
+              )
+            }
           <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
           <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
 

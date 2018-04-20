@@ -13,7 +13,8 @@ class Show extends Component {
       newComment:{
         user_id:'',
         username:'',
-        comment:''
+        comment:'',
+        updated_date: { type: Date, default: Date.now }
       }
     };
     this.onChange = this.onChange.bind(this);
@@ -67,7 +68,7 @@ class Show extends Component {
         this.props.history.push("/")
       });
   }
-
+  
   handleClick = () => {
    let curProject = Object.assign({}, this.state.project);
    curProject.like = curProject.like + 1;
@@ -139,10 +140,8 @@ class Show extends Component {
             }
           <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
           <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
-
         </Layout>
       </div>
-
     );
   }
 }

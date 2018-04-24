@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import '../style/dashboard.css';
 import SearchInput, {createFilter} from 'react-search-input'
 import decode from 'jwt-decode';
+import Layout from './Layout.js';
 
 const KEYS_TO_FILTERS = ['type', 'name', 'skills'];
 
@@ -37,25 +38,32 @@ class Dashboard extends Component {
     const filtered = this.state.projects.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
 
     return (
+      <Layout>
       <div class = 'view col-md-offset-1 col-md-10'>
+      <h3>
+        Your Projects
+      </h3>
+      <div class="bar">
         {!token &&
-          <div class = "create col-md-offset-10">
-            <Link to="/login" class = "btn btn-default" >
+          <div class = "create">
+            <Link to="/login" type = "button" class = "btn btn-default" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             <span class = "add">Add Your Project</span></Link>
           </div>
         }
         {token &&
-          <div class = "create col-md-offset-10">
-            <Link to="/create" class = "btn btn-default" >
+          <div class = "create">
+            <Link to="/create" type = "button"  class = "btn btn-default" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             <span class = "add">Add Your Project</span></Link>
           </div>
         }
 
-      <SearchInput className="search-input" onChange={this.searchUpdated} />
+      <SearchInput class="search-input form-control" onChange={this.searchUpdated} />
+      </div>
+      <div class="container">
         {filtered.map(project =>
-          <div class="col-sm-6 col-md-4">
+          <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
               <img src={project.filelink} alt="Preview" />
               <div class="caption">
@@ -69,6 +77,8 @@ class Dashboard extends Component {
           </div>
         )}
       </div>
+      </div>
+      </Layout>
 
     );
   }

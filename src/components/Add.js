@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import '../style/create.css';
 import decode from 'jwt-decode';
 
+
 class Add extends Component {
   constructor() {
     super();
@@ -53,39 +54,44 @@ class Add extends Component {
     this.state.user = decoded.username;
     this.state.id = decoded._id;
     return (
-      <div class = "col-md-offset-1 col-md-10">
-        <div class = "new">Add a New Project</div>
-        <div class = "col-md-offset-3 sub">
-          Looking for hackers? Check Collborate for your project!
+      <div class="container">
+        <div class="panel panel-default main">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Add a New Project
+            </h3>
+          </div>
+          <div class="panel-body">
+            <form onSubmit={this.onSubmit}>
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Albert and Alberta's Personal Website" />
+              </div>
+              <div class="form-group">
+                <label for="type">Type:</label>
+                <input type="text" class="form-control" name="type" value={type} onChange={this.onChange} placeholder="Web Application" />
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" name="description" value={description} onChange={this.onChange} placeholder="This website has everything about Albert and Alberta!" />
+              </div>
+              <div class="form-group">
+                <label for="github">GitHub Link:</label>
+                <input type="text" class="form-control" name="github" value={github} onChange={this.onChange} placeholder="Link to your GitHub repository" />
+              </div>
+              <div class="form-group">
+                <label for="skills">Skills:</label>
+                <input type="text" class="form-control" name="skills" value={skills} onChange={this.onChange} placeholder="HTML CSS JavaScript ReactJS NodeJS" />
+              </div>
+              <div class="form-group">
+                <label for="filelink">Add Visual:</label>
+                <input type="text" class="form-control" name="filelink" value={filelink} onChange={this.onChange} placeholder="Screenshot" />
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
         </div>
-        <form onSubmit = {this.onSubmit}>
-          <div class = "input-group">
-            <span class ="input-group-addon" id="name">Name</span>
-            <input type = "text" class = "form-control" name = "name" value = {name} onChange = {this.onChange} placeHolder = "Albert and Alberta's Personal Website" />
-          </div>
-          <div class = "input-group">
-            <span class ="input-group-addon" id="collaborate">Collaborate</span>
-            <input type = "text" class = "form-control" name = "collaborate" value = {collaborate} onChange = {this.onChange} placeHolder = "Gator" />
-          </div>
-          <div class = "input-group">
-            <span class ="input-group-addon" id="type">Type</span>
-            <input type = "text" class = "form-control" name = "type" value = {type} onChange = {this.onChange} placeHolder = "Web Application" />
-          </div>
-          <div class = "input-group">
-            <span class ="input-group-addon" id="description">Description</span>
-            <input type = "text" class = "form-control" name = "description" value = {description} onChange = {this.onChange} placeHolder = "This website has everything about Albert and Alberta!" />
-          </div>
-          <div class = "input-group">
-            <span class = "input-group-addon" id = "skills">Skills</span>
-            <input type = "text" class = "form-control" name = "skills" value = {skills} onChange = {this.onChange} placeHolder = "HTML CSS JavaScript ReactJS NodeJS" />
-          </div>
-          <div class = "input-group">
-            <span class = "input-group-addon" id = "filelink">Add Visual</span>
-            <input type = "text" class = "form-control" name = "filelink" value = {filelink} onChange = {this.onChange} placeHolder = "Selfie" />
-          </div>
-          <button type="submit" class="btn btn-default"><span class = "submit">Submit</span></button>
-        </form>
-      </div>
+        </div>
     );
   }
 }

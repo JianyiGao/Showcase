@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Layout from './Layout.js';
 import decode from 'jwt-decode';
+import '../style/show.css';
 
 class Show extends Component {
 
@@ -68,7 +69,7 @@ class Show extends Component {
         this.props.history.push("/")
       });
   }
-  
+
   handleClick = () => {
    let curProject = Object.assign({}, this.state.project);
    curProject.like = curProject.like + 1;
@@ -90,56 +91,66 @@ class Show extends Component {
     return (
       <div class = "show">
         <Layout>
+        <div class="col-md-offset-1">
           <h3>
             {this.state.project.name}
           </h3>
-          <img src = {this.state.project.filelink} alt = "Picture" />
-          <Link to = "/" class="btn btn-default">Back</Link>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Description</h3>
-            </div>
-            <div class="panel-body">
-              {this.state.project.description}
-            </div>
-            <div class="panel-heading">
-              <h3 class="panel-title">Github Link</h3>
-            </div>
-            <div class="panel-body">
-              {this.state.project.link}
-            </div>
-            <div class="panel-heading">
-              <h3 class="panel-title">Skills</h3>
-            </div>
-            <div class="panel-body">
-              {this.state.project.skills}
+          <div class = "col-md-4 picture">
+            <img src = {this.state.project.filelink} alt = "Picture" id="demo" />
+          </div>
+          <div class = "detail col-md-7">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Description</h3>
+              </div>
+              <div class="panel-body">
+                {this.state.project.description}
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Github Link</h3>
+              </div>
+              <div class="panel-body">
+                {this.state.project.link}
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Skills</h3>
+              </div>
+              <div class="panel-body">
+                {this.state.project.skills}
+              </div>
             </div>
           </div>
             {token &&
-              <div class="comment_like">
+              <div class="col-md-7">
                 <button class="btn btn-default" onClick={this.handleClick}>{this.state.project.like} Likes</button>
-                <form onSubmit = {this.onSubmit}>
+                <form onSubmit = {this.onSubmit} class = "comment">
                   <div class = "input-group">
                     <span class ="input-group-addon" id="comment">Comment</span>
                     <input type = "text" class = "form-control" name = "comment" value = {this.state.newComment.comment} onChange = {this.onChange} placeHolder = "This is a cool project!" />
                   </div>
-                  <button type="submit" class="btn btn-default"><span class = "submit">Submit</span></button>
+                  <button class="btn btn-default">Submit</button>
                 </form>
               </div>
             }
             {!token &&
               <span class = "add">Please <Link to="/login" >login</Link> to comment and like!</span>
             }
+            <div class=" ol-md-offset-1 col-md-4">
+                <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
+                <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+            <div class="col-md-offset-5 col-md-7">
+              <h4>Comments</h4>
             {comments &&
               comments.map(comment =>
                 <div>
-                  <p>{comment.username}</p>
-                  <p>{comment.comment}</p>
+                  <span>{comment.username}</span>
+                  <span id="comment">{comment.comment}</span>
                 </div>
-              )
+            )
             }
-          <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
-          <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
+            </div>
         </Layout>
       </div>
     );

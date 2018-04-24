@@ -1,4 +1,4 @@
-/*.app{
+.app{
   font-size:80px;
   font-weight: bold;
 }
@@ -8,9 +8,29 @@
   font-weight: normal;
 }
 
+.bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.create {
+  margin-bottom: -20px;
+}
+
+.search-input {
+  margin-bottom: 10px;
+}
+
 .caption{
   background: #FFEBEA;
   margin: 2%;
+}
+
+.search-input {
+  width: 980px;
+  margin-left:50px;
+  padding:10px;
+  height: 40px;
 }
 
 .thumbnail {
@@ -19,13 +39,32 @@
 }
 
 .add{
+  font-family: 'Raleway', sans-serif;
   font-size: 20px;
   color: black;
+}
+
+.project {
+  font-family: 'Raleway', sans-serif;
+}
+
+.project p {
+  font-size: 16px;
 }
 
 .btn-default {
   color: #BFB7B0;
   margin-bottom: 5%;
+}
+
+.container {
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+#picture {
+  max-height: 320px;
+  padding: 2% 3% 2% 3%;
 }
 
 .glyphicon {
@@ -39,4 +78,4 @@
 
 .view {
   flex: 1;
-}*/
+}

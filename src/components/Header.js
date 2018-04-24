@@ -14,6 +14,7 @@ import {
   Button
 } from 'react-bootstrap';
 import decode from 'jwt-decode';
+import '../style/header.css';
 
 class Header extends Component {
 
@@ -35,30 +36,31 @@ class Header extends Component {
     			<Navbar.Toggle />
     		</Navbar.Header>
     		<Navbar.Collapse>
-    			<Nav>
-    				<NavItem eventKey={1} href="/create">
-    					Create
-    				</NavItem>
-    				<NavItem eventKey={2} href="#">
-    					CaseSuberb
-    				</NavItem>
-    			</Nav>
-          <Navbar.Form pullLeft>
-  				<FormGroup>
-  					<FormControl type="text" placeholder="Search" />
-  				</FormGroup>{' '}
-  				<Button type="submit">Submit</Button>
-  			</Navbar.Form>
+    			{token &&
+            <Nav>
+      				<NavItem eventKey={1} href="/create">
+      					Create
+      				</NavItem>
+    			   </Nav>
+          }
+          {!token &&
+            <Nav>
+      				<NavItem eventKey={1} href="/login">
+      					Create
+      				</NavItem>
+    			   </Nav>
+          }
+
             {!localStorage.getItem('jwtToken') &&
               <Nav pullRight>
-                <NavItem eventKey={1}  href = "/login">Login</NavItem>
-                <NavItem eventKey={2}  href = "/register">Register</NavItem>
+                <NavItem eventKey={1} class="second" href = "/login">Login</NavItem>
+                <NavItem eventKey={2} class="right" href = "/register">Register</NavItem>
               </Nav>
             }
             {localStorage.getItem('jwtToken') &&
             	<Nav pullRight>
-                <NavItem eventKey={1} href="/dashboard">{decoded_token.username}</NavItem>
-                <NavItem eventKey={2}  onClick={this.logout}>Logout</NavItem>
+                <NavItem eventKey={1}  href="/dashboard">{decoded_token.username}</NavItem>
+                <NavItem eventKey={2}  onClick={this.logout} href = "/">Logout</NavItem>
               </Nav>
             }
     		</Navbar.Collapse>

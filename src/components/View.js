@@ -53,7 +53,7 @@ class View extends Component {
       </div>
         <div class="container">
         {filtered.map(project =>
-          <div class="col-sm-6 col-md-4 project">
+          <div class="col-sm-6 col-md-3 project">
             <div class="thumbnail">
               <img src={project.filelink} alt="Preview" id="picture" />
               <div class="caption">

@@ -30,6 +30,7 @@
   width: 980px;
   margin-left:50px;
   padding:10px;
+  height: 40px;
 }
 
 .thumbnail {
@@ -57,10 +58,8 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: row | column;
-  flex-wrap: nowrap;
   align-items: center;
+  margin-bottom: 100px;
 }
 
 #picture {

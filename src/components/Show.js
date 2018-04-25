@@ -110,7 +110,7 @@ class Show extends Component {
                 <h3 class="panel-title">Github Link</h3>
               </div>
               <div class="panel-body">
-                {this.state.project.link}
+                {this.state.project.github}
               </div>
               <div class="panel-heading">
                 <h3 class="panel-title">Skills</h3>
@@ -118,7 +118,17 @@ class Show extends Component {
               <div class="panel-body">
                 {this.state.project.skills}
               </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Project Link</h3>
+              </div>
+              <div class="panel-body">
+                {this.state.project.link}
+              </div>
             </div>
+          </div>
+          <div class=" ol-md-offset-1 col-md-4">
+              <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
+              <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
           </div>
             {token &&
               <div class="col-md-7">
@@ -135,13 +145,11 @@ class Show extends Component {
             {!token &&
               <span class = "add">Please <Link to="/login" >login</Link> to comment and like!</span>
             }
-            <div class=" ol-md-offset-1 col-md-4">
-                <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
-                <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
-            </div>
         </div>
-            <div class="col-md-offset-5 col-md-7">
-              <h4>Comments</h4>
+            <div class="col-md-offset-5 col-md-6 comment_space panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Comments</h3>
+            </div>
             {comments &&
               comments.map(comment =>
                 <div>

@@ -57,7 +57,9 @@
   margin-bottom: 5%;
 }
 
-.container {
+#container {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 100px;
 }
@@ -78,4 +80,8 @@
 
 .view {
   flex: 1;
+}
+
+#title {
+  margin-bottom: 25px;
 }

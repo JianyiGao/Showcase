@@ -2,9 +2,9 @@ footer {
     clear: both;
     z-index: 10;
     color: #997874;
-    padding-top: 25px;
     bottom: 0;
     width: 100%;
     text-align: center;
     position: fixed;
+    background: white;
   }

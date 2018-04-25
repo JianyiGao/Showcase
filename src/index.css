@@ -2,7 +2,7 @@ body {
   padding: 0;
   font-family: 'Raleway', sans-serif;
   /*background: url("../src/assets/background.png");*/
-  background-color: #FFEED4;
+  background-color: white;
   background-size: cover;
   size: 100%;
   min-height: 100%;

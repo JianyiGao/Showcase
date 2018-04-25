@@ -16,11 +16,13 @@ router.post('/register', function(req, res) {
       username: req.body.username,
       password: req.body.password
     });
+    console.log(newUser);
     // save the user
     newUser.save(function(err) {
       if (err) {
         return res.json({success: false, msg: 'Username already exists.'});
       }
+      console.log("User account");
       res.json({success: true, msg: 'Successful created new user.'});
     });
   }

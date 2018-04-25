@@ -51,7 +51,7 @@ class View extends Component {
 
       <SearchInput class ="search-input form-control " onChange={this.searchUpdated} />
       </div>
-        <div class="container">
+        <div id="container">
         {filtered.map(project =>
           <div class="col-sm-6 col-md-3 project">
             <div class="thumbnail">

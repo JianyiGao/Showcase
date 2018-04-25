@@ -40,7 +40,7 @@ class Dashboard extends Component {
     return (
       <Layout>
       <div class = 'view col-md-offset-1 col-md-10'>
-      <h3>
+      <h3 id="title">
         Your Projects
       </h3>
       <div class="bar">
@@ -61,7 +61,7 @@ class Dashboard extends Component {
 
       <SearchInput class="search-input form-control" onChange={this.searchUpdated} />
       </div>
-      <div class="container">
+      <div id="container">
         {filtered.map(project =>
           <div class="col-sm-6 col-md-3">
             <div class="thumbnail">

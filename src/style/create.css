@@ -31,3 +31,7 @@
 .main {
   width: 100%;
 }
+
+#submit {
+  padding-bottom: 0;
+}

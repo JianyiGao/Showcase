@@ -126,12 +126,14 @@ class Show extends Component {
               </div>
             </div>
           </div>
-          <div class=" ol-md-offset-1 col-md-4">
-              <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
-              <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
-          </div>
+          {token &&
+            <div class=" ol-md-offset-1 col-md-4">
+                <Link to={`/edit/${this.state.project._id}`} class="btn btn-success">Edit</Link>&nbsp;
+                <button onClick={this.delete.bind(this, this.state.project._id)} class="btn btn-danger">Delete</button>
+            </div>
+          }
             {token &&
-              <div class="col-md-7">
+              <div class="col-md-7 like">
                 <button class="btn btn-default" onClick={this.handleClick}>{this.state.project.like} Likes</button>
                 <form onSubmit = {this.onSubmit} class = "comment">
                   <div class = "input-group">
@@ -143,7 +145,7 @@ class Show extends Component {
               </div>
             }
             {!token &&
-              <span class = "add">Please <Link to="/login" >login</Link> to comment and like!</span>
+              <span class = "add col-md-7">Please <Link to="/login" >login</Link> to comment and like!</span>
             }
         </div>
             <div class="col-md-offset-5 col-md-6 comment_space panel panel-default">

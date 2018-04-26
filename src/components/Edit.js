@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Layout from './Layout.js';
+import '../style/edit.css';
 
 class Edit extends Component {
 
@@ -40,8 +41,8 @@ class Edit extends Component {
   render() {
     return (
       <Layout>
-      <div class="container" style="margin-bottom: 25px;">
-        <div class="panel panel-default col-md-12">
+      <div class="container">
+        <div class="panel panel-default col-md-12 edit">
           <div class="panel-heading">
             <h3 class="panel-title">
               Edit Project

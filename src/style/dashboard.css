@@ -34,7 +34,7 @@
 }
 
 .thumbnail {
-  background: #FFF7EA;
+  background: white;
   margin: 2%;
 }
 
@@ -54,7 +54,6 @@
 
 .btn-default {
   color: #BFB7B0;
-  margin-bottom: 5%;
 }
 
 #container {

@@ -87,7 +87,7 @@ class Add extends Component {
                 <label for="filelink">Add Visual:</label>
                 <input type="text" class="form-control" name="filelink" value={filelink} onChange={this.onChange} placeholder="Screenshot" />
               </div>
-              <button type="submit" class="btn btn-default" id="submit">Submit</button>
+              <button type="submit" class="btn btn-default" id="submit" href = "/">Submit</button>
             </form>
           </div>
         </div>

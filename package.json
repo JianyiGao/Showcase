@@ -35,5 +35,8 @@
   "devDependencies": {
     "bootstrap": "^3.3.7",
     "jwt-decode": "^2.2.0"
+  },
+  "engines": {
+    "node": "6.11.2"
   }
 }
